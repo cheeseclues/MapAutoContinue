@@ -1,44 +1,88 @@
-# Maps Auto-Continue v0.4 — Android Studio project
+# Maps Auto-Continue
 
-Companion app for Google Maps. This version removes the **Detect only** switch entirely: once you deliberately start ride monitoring, the service attempts to press Google Maps' **Next stop** button automatically when the movement and UI checks pass. The Google Maps route and GPS navigation are still handled by Google Maps.
+An Android companion app that automatically continues Google Maps navigation through intermediate stops without requiring manual interaction.
 
-## What changed from v0.3
+## Why this app exists
 
-- Removed the **Detect only (no automatic taps)** checkbox and the associated settings code.
-- Removed the detection-only early exit in the Accessibility Service. **This also ignores any old dry-run setting left over from v0.3**, so installing over an existing installation will not silently disable automatic tapping.
-- Displays a read-only status message: **Automatic continuation is enabled while ride monitoring is active**.
-- Persistent notification explicitly says **Auto-continue on**.
-- Kept the manual **Start ride monitoring** and **Stop monitoring** controls, including notification **Stop ride** action.
-- Kept all checks in v0.3: Google Maps foreground, a recognized clickable waypoint control, arrival context, fresh/accurate GPS speed above the configured threshold for at least 2 seconds, the button being visible for 2.5 seconds, and a 15-second cooldown between attempts.
+Google Maps allows users to create custom routes by adding multiple stops. However, when reaching an intermediate stop, Google Maps pauses navigation and requires the user to manually press **Next stop** before continuing.
 
-## Install in Android Studio (Windows)
+This is particularly inconvenient for motorcyclists who use intermediate stops to create scenic routes rather than visit actual destinations.
 
-1. Extract this ZIP and open the `MapAutoContinue` directory in Android Studio (it contains `settings.gradle.kts`).
-2. If the Gradle wrapper JAR is missing, open PowerShell in this directory and run:
+**Maps Auto-Continue solves this problem by automatically pressing Next stop when the device is moving and Google Maps displays the appropriate arrival screen.**
 
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\prepare-wrapper.ps1
-   ```
+You can continue using Google Maps for route planning, navigation, traffic information and voice guidance.
 
-   This downloads the official Gradle wrapper and verifies its checksum. Gradle dependencies will still need to be downloaded during sync.
-3. Sync Gradle, select your emulator or connected phone, and click **Run**. The package name has not changed (`fi.cheeseclues.mapautocontinue`), so this installs as an update when signed with the same debug key.
-4. Enable the app's Accessibility Service if Android requests it. Grant precise location and notifications when prompted.
-5. Open the app, tap **Start ride monitoring**, then open Google Maps. Auto-continue is now active. You can disable it by tapping **Stop monitoring** in the app or **Stop ride** in the notification.
+## Features
 
-## Test
+- Automatically continues Google Maps navigation at intermediate stops.
+- Detects the **Next stop** button using Android Accessibility Services.
+- Uses GPS movement to determine when automatic continuation is appropriate.
+- Requires no interaction while riding.
+- Runs alongside Google Maps.
+- Provides manual Start and Stop monitoring controls.
+- Displays a persistent notification while monitoring.
+- No root access required.
+- No Google Maps API key or subscription required.
+- No accounts, telemetry or location uploads.
 
-The v0.3 emulator test from Oct 11, 2026 showed that the app found Google Maps' `Next stop` control and that `ACTION_CLICK` resumed Google Maps navigation. The v0.4 modifications have **not** been compiled or executed in this environment.
+## How it works
 
-Before riding, repeat the test in the emulator with a multi-stop route and simulated GPS speed above the threshold. In Android Studio Logcat filter:
+1. Plan a route in Google Maps with multiple intermediate stops.
+2. Open Maps Auto-Continue and enable its required permissions.
+3. Press **Start ride monitoring**.
+4. Open Google Maps and start navigation.
+5. When Google Maps displays **Next stop**, the app checks the arrival screen and GPS movement.
+6. If the required conditions are satisfied, the app automatically presses **Next stop**.
 
-```
-tag:MapAutoContinue
-```
+Google Maps then continues navigation toward the next destination.
 
-Successful output includes `Found waypoint 'Next stop' ...` and `ACTION_CLICK sent to 'Next stop' — verify Maps advanced`. Confirm that navigation actually progresses and that it doesn't advance at zero speed or the final destination. Never interact with the device while riding.
+## Requirements
 
-## Boundaries and privacy
+- Android device
+- Google Maps installed
+- Accessibility Service permission
+- Precise location permission
+- Notification permission where required
 
-This app is not affiliated with Google. Its Accessibility Service can inspect Google Maps UI only as configured by Android's accessibility permission. No internet permission, accounts, telemetry, or location uploads. It may stop working if Google Maps changes its accessibility hierarchy. The app still needs to be deliberately started for each monitoring session.
+## Installation
 
-The project currently targets Android SDK 35, uses Kotlin, and includes `prepare-wrapper.ps1` for wrapper setup. It is prototype software: emulator success does not guarantee reliability on a physical phone.
+### Build with Android Studio
+
+1. Clone or download this repository.
+2. Open the project directory in Android Studio.
+3. If the Gradle wrapper JAR is missing, run `prepare-wrapper.ps1` on Windows to download and verify the wrapper.
+4. Sync the Gradle project.
+5. Connect an Android device with USB debugging enabled.
+6. Build and run the application.
+7. Grant the required permissions.
+
+## Safety and limitations
+
+- The app only attempts automatic continuation when its movement and user-interface conditions are satisfied.
+- Monitoring must be started manually.
+- Google Maps updates may change its interface and break button detection.
+- GPS speed and accuracy can affect behavior.
+- Automatic continuation is not guaranteed in every situation.
+- Configure the application before riding. Never operate your phone while riding.
+
+## Privacy
+
+Maps Auto-Continue does not require an account or internet permission.
+
+Location information is used locally to evaluate movement conditions. The app does not upload GPS coordinates or navigation history.
+
+Accessibility access is used to detect and interact with relevant Google Maps controls.
+
+## Technical information
+
+- Language: Kotlin
+- Platform: Android
+- Target SDK: 35
+- Uses Android Accessibility Services and location APIs
+- Package: `fi.cheeseclues.mapautocontinue`
+
+## Disclaimer
+
+Maps Auto-Continue is an independent project and is not affiliated with, endorsed by, or sponsored by Google.
+
+Google Maps is a trademark of Google LLC.
