@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Maps Auto-Continue</string>
+    <string name="accessibility_description">During an explicitly started ride, read only Google Maps screen content to find the Continue button and optionally activate it when GPS shows movement. Does not collect or transmit screen content.</string>
+</resources>

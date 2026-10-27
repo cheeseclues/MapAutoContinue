@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MAPS AUTO-CONTINUE"
+            android:textColor="#176B65"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:letterSpacing="0.09" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Ride without tapping Continue."
+            android:textColor="#182A35"
+            android:textStyle="bold"
+            android:textSize="27sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="A small helper for Google Maps routes with intermediate stops."
+            android:textColor="#62717B"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:padding="18dp"
+            android:orientation="vertical"
+            android:background="@drawable/panel_background">
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="LIVE STATUS" android:textStyle="bold" android:textSize="12sp" android:textColor="#176B65" />
+            <TextView android:id="@+id/txtRide" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" android:text="Ride: Not started" android:textStyle="bold" android:textSize="17sp" android:textColor="#182A35" />
+            <TextView android:id="@+id/txtAccessibility" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:text="Accessibility: Checking…" android:textSize="14sp" android:textColor="#526370" />
+            <TextView android:id="@+id/txtSpeed" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:text="GPS: No fix yet" android:textSize="14sp" android:textColor="#526370" />
+            <TextView android:id="@+id/txtLastAction" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:text="Detector: Idle" android:textSize="14sp" android:textColor="#526370" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:padding="18dp"
+            android:orientation="vertical"
+            android:background="@drawable/panel_background">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="OPTIONS" android:textStyle="bold" android:textSize="12sp" android:textColor="#176B65" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Automatic continuation is enabled while ride monitoring is active."
+                android:textColor="#176B65" android:textStyle="bold" android:textSize="14sp" />
+            <TextView android:id="@+id/txtThreshold"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Continue above 8 km/h"
+                android:textStyle="bold"
+                android:textColor="#182A35" />
+            <SeekBar android:id="@+id/seekThreshold"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:max="25" android:progress="3" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Requires a fresh, accurate GPS speed reading and at least 2 seconds of movement."
+                android:textColor="#62717B" android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button android:id="@+id/btnAccessibility" android:layout_width="match_parent" android:layout_height="52dp"
+            android:layout_marginTop="18dp" android:background="@drawable/secondary_button"
+            android:text="1. Enable Accessibility Service" android:textAllCaps="false" android:textColor="#176B65" />
+        <Button android:id="@+id/btnStart" android:layout_width="match_parent" android:layout_height="54dp"
+            android:layout_marginTop="10dp" android:background="@drawable/primary_button"
+            android:text="2. Start ride monitoring" android:textAllCaps="false" android:textColor="#FFFFFF" />
+        <Button android:id="@+id/btnMaps" android:layout_width="match_parent" android:layout_height="52dp"
+            android:layout_marginTop="10dp" android:background="@drawable/secondary_button"
+            android:text="3. Open Google Maps" android:textAllCaps="false" android:textColor="#176B65" />
+        <Button android:id="@+id/btnStop" android:layout_width="match_parent" android:layout_height="52dp"
+            android:layout_marginTop="10dp" android:background="@drawable/secondary_button"
+            android:text="Stop monitoring" android:textAllCaps="false" android:textColor="#B3261E" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="20dp"
+            android:text="Prototype · English / Finnish Continue labels · No network or accounts. Configure and test while parked. GPS may be inaccurate in tunnels or indoors. This app does not alter Google Maps itself."
+            android:textSize="12sp" android:textColor="#62717B" />
+    </LinearLayout>
+</ScrollView>
